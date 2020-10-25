@@ -1,6 +1,12 @@
 # vim-spell
 
-filetype specific spell files
+Syntax specific spell files
+
+I like keeping spell check on, however, often times, I'll use a word specific to
+the language I'm using in a comment which isn't a valid English word. This will
+cause vim to mark it as a mis-spelling. For example, if I use the word "const"
+in a c/c++ comment, vim will mark it. vim-spell works around this annoyance by
+providing syntax specific spelling files and loading them as needed.
 
 # Install
 
