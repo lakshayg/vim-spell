@@ -1,0 +1,7 @@
+# vim-spell
+
+filetype specific spell files
+
+# Install
+
+Plug 'lakshayg/vim-spell', { 'do': { -> spell#generate_all_spell_files() } }
