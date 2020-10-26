@@ -2,7 +2,7 @@
 
 Syntax specific spell files
 
-I like keeping spell check on, however there are a few problems with that:
+I like keeping spell check on, however it has a few problems:
 
 1. Often times, I'll use a word specific to the language I'm using in
    a comment which isn't a valid English word. This will cause vim to
@@ -20,7 +20,7 @@ This plugin solves these issues by:
 
 1. Providing languages specific word lists and spell files
 2. Allowing the user to create a spell file from tags file
-3. Disable spell-check in terminal and non-modifiable buffers
+3. Set nospell for terminal and other non-modifiable buffers
 
 # Installation
 
@@ -42,13 +42,13 @@ To add a new word to the syntax specific spell file:
 
 If [word] is omitted, the word under the cursor is added.
 
-If more advanced editing of word lists is required, they can be found
-under "<plugin-dir>/words". Those files can be edited by hand and the
-spell files can be re-built by using:
+If more advanced editing of word lists is required, use:
 
-  :SpellBuildSyntax [filetype]
+  :SpellEdit [filetype]
 
-If [filetype] is not specified, filetype of the current buffer is used
+When a word list is saved, it is automatically sorted, deduped and the
+corresponding spell file is updated. If [filetype] is left unspecified,
+filetype of the current buffer is used
 
 To re-build all the spell files
 

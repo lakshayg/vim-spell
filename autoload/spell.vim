@@ -3,13 +3,32 @@ let s:words_dir = s:plugin_dir . "/words"
 let s:spell_dir = s:plugin_dir . "/spell"
 let s:tags_dir = s:plugin_dir . "/tags"
 
+function! spell#GetWordList(...)
+  let type = a:0 == 0 ? &filetype : a:1
+  return s:words_dir . "/" . type . ".words"
+endfunction
+
+function! spell#GetSyntaxFile(...)
+  let type = a:0 == 0 ? &filetype : a:1
+  return s:spell_dir . "/" . type . ".ascii.spl"
+endfunction
+
+function! spell#OnWordListWrite()
+  let bufname = expand("%:p")
+  let wordlists = split(globpath(s:words_dir, "*.words"))
+  if index(wordlists, bufname) >= 0
+    silent exe "%!sort -u"
+    silent call spell#BuildSyntaxFile(fnamemodify(bufname, ":t:r"))
+  endif
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions to build spell files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Build .spl files from word lists
 function! spell#BuildAllSyntaxFiles()
-  let wordlists = split(globpath(s:words_dir, "*.txt"))
+  let wordlists = split(globpath(s:words_dir, "*.words"))
   for inname in wordlists
     let outname = s:spell_dir . (inname[len(s:spell_dir):-5])
     exe join(["mkspell! -ascii", outname, inname])
@@ -19,8 +38,8 @@ endfunction
 " Generate spell file for the specified filetype
 function! spell#BuildSyntaxFile(...)
   let type = a:0 == 0 ? &filetype : a:1
-  let wordfile = s:words_dir . "/" . type . ".txt"
-  let spellfile = s:spell_dir . "/" . type . ".ascii.spl"
+  let wordfile = spell#GetWordList(type)
+  let spellfile = spell#GetSyntaxFile(type)
   exe join(["mkspell! -ascii", spellfile, wordfile])
 endfunction
 
@@ -54,7 +73,7 @@ endfunction
 
 " Load the spell file corresponding to current filetype
 function! spell#LoadSyntaxFile()
-  let syntax_spell_file = s:spell_dir . "/" . &filetype . ".ascii.spl"
+  let syntax_spell_file = spell#GetSyntaxFile(&filetype)
   if filereadable(syntax_spell_file)
     exe "setlocal spelllang+=" . &filetype
   endif
@@ -82,7 +101,7 @@ endfunction
 function! spell#SpellSyntaxAdd(...)
   let word = a:0 == 0 ? expand("<cword>") : a:1
   echo "Adding word \"" . word . "\""
-  let wordfile = s:words_dir . "/" . &filetype . ".txt"
+  let wordfile = spell#GetWordList(&filetype)
   call writefile([word], wordfile, "a")
   silent call spell#BuildSyntaxFile()
   call spell#LoadSyntaxFile()
