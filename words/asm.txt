@@ -15,6 +15,7 @@ rbp
 rbx
 rcx
 rdx
+ret
 rsp
 str
 xmm0

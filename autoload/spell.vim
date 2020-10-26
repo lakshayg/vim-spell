@@ -17,10 +17,11 @@ function! spell#BuildAllSyntaxFiles()
 endfunction
 
 " Generate spell file for the specified filetype
-function! spell#BuildSyntaxFile(filetype)
-  let wordfile = s:words_dir . "/" . a:filetype . ".txt"
-  let spellfile = s:spell_dir . "/" . a:filetype . ".ascii.spl"
-  exe join(["silent mkspell! -ascii", spellfile, wordfile])
+function! spell#BuildSyntaxFile(...)
+  let type = a:0 == 0 ? &filetype : a:1
+  let wordfile = s:words_dir . "/" . type . ".txt"
+  let spellfile = s:spell_dir . "/" . type . ".ascii.spl"
+  exe join(["mkspell! -ascii", spellfile, wordfile])
 endfunction
 
 function! spell#BuildTagsFile()
@@ -83,6 +84,6 @@ function! spell#SpellSyntaxAdd(...)
   echo "Adding word \"" . word . "\""
   let wordfile = s:words_dir . "/" . &filetype . ".txt"
   call writefile([word], wordfile, "a")
-  call spell#BuildSyntaxFile(&filetype)
+  silent call spell#BuildSyntaxFile()
   call spell#LoadSyntaxFile()
 endfunction
