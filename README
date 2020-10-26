@@ -2,12 +2,25 @@
 
 Syntax specific spell files
 
-I like keeping spell check on, however, often times, I'll use a word specific to
-the language I'm using in a comment which isn't a valid English word. This will
-cause vim to mark it as a mis-spelling. For example, if I use the word "const"
-in a c/c++ comment, vim will mark it. vim-spell works around this annoyance by
-providing syntax specific spelling files and loading them as needed.
+I like keeping spell check on, however there are a few problems with that:
+
+1. Often times, I'll use a word specific to the language I'm using in
+   a comment which isn't a valid English word. This will cause vim to
+   mark it as a mis-spelling. For example, if I use the word "const"
+   in a c/c++ comment, vim will mark it. vim-spell works around this
+   annoyance by providing syntax specific spelling files and loading
+   them as needed.
+
+2. When I use a word that is a project specific identifier, vim marks
+   it as a mis-spelling as well. For example, if I were to define a
+   class called "MyVector", it would be marked as a mis-spelling if I
+   were to use it in a comment.
+
+This plugin solves these issues by:
+
+1. Providing languages specific word lists and spell files
+2. Allowing the user to create a spell file from tags file
 
 # Install
 
-Plug 'lakshayg/vim-spell', { 'do': { -> spell#generate_all_spell_files() } }
+Plug 'lakshayg/vim-spell', { 'do': { -> spell#BuildAllSyntaxFiles() } }

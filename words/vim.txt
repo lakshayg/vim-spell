@@ -23,12 +23,14 @@ gvim
 ignorecase
 init.vim
 mkspell
+nargs
 netrw
 noignorecase
 nvim
 omnicomplete
 omnifunc
 quickfix
+runtimepath
 setlocal
 sfile
 shiftwidth
