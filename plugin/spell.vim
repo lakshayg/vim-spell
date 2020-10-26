@@ -7,9 +7,6 @@ command! -nargs=? SpellEdit :exe "edit" spell#GetWordList(<f-args>)
 augroup VimSpell
   autocmd!
 
-  " No spell check in terminal
-  autocmd TermOpen * setlocal nospell
-
   " Load spell check files if buffer is modifiable
   autocmd BufReadPost *
         \   if &modifiable
@@ -21,3 +18,11 @@ augroup VimSpell
 
   autocmd BufWritePost *.words :call spell#OnWordListWrite()
 augroup END
+
+" No spell check in terminal.
+" Vim has TerminalOpen, Neovim has TermOpen
+if has('nvim')
+  autocmd VimSpell TermOpen * setlocal nospell
+else
+  autocmd VimSpell TerminalOpen * setlocal nospell
+end

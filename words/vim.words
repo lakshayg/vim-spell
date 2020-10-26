@@ -5,6 +5,8 @@ FoldCoumn
 Gblame
 Gdiff
 SignColumn
+TermOpen
+TerminalOpen
 augroup
 autocmd
 autocommand

@@ -22,6 +22,16 @@ This plugin solves these issues by:
 2. Allowing the user to create a spell file from tags file
 3. Set nospell for terminal and other non-modifiable buffers
 
+A nice side-effect of 1 and 2 is that it acts kind of like
+a very coarse syntax checker for code in comment and tells
+the user when code in comments is incorrect or out-of-date
+
+NOTE: A plugin that modifies spell checker to work properly
+with CamelCase and identifiers with numbers in them will
+probably solve a large subset of the problem this plugin
+solves. However, I prefer this approach primarily due to
+the syntax checking side-effect
+
 # Installation
 
 Using vim-plug:
@@ -31,6 +41,13 @@ Using vim-plug:
 The process should be similar for other plugin managers.
 
 # Usage
+
+Since this is a spell check plugin, make sure you "set spell"
+otherwise the plugin doesn't really do anything.
+
+The plugin works under the hood for the most part and requires
+user interaction only when the user wants to build a spell file
+from tags or add a new word to the syntax spell file.
 
 To generate a spell file from the currently loaded tags files:
 
