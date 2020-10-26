@@ -20,6 +20,7 @@ This plugin solves these issues by:
 
 1. Providing languages specific word lists and spell files
 2. Allowing the user to create a spell file from tags file
+3. Disable spell-check in terminal and non-modifiable buffers
 
 # Install
 

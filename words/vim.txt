@@ -5,6 +5,7 @@ FoldCoumn
 Gblame
 Gdiff
 SignColumn
+augroup
 autocmd
 autocommand
 autocomplete

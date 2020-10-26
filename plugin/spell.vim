@@ -5,7 +5,16 @@ command! -nargs=0 SpellBuildTags
 
 augroup VimSpell
   autocmd!
+
+  " No spell check in terminal
+  autocmd TermOpen * setlocal nospell
+
+  " Load spell check files if buffer is modifiable
   autocmd BufReadPost *
-        \   :call spell#LoadSyntaxFile()
-        \ | :call spell#LoadTagsFile()
+        \   if &modifiable
+        \ |   :call spell#LoadSyntaxFile()
+        \ |   :call spell#LoadTagsFile()
+        \ | else
+        \ |   setlocal nospell
+        \ | endif
 augroup END
