@@ -1,4 +1,5 @@
 Cfilter
+CompilerSet
 F1
 FocusGained
 FoldCoumn
@@ -12,12 +13,14 @@ autocmd
 autocommand
 autocomplete
 autoindent
+autoload
 autoread
 cmdline
 colorscheme
 commentstring
 cword
 diff
+errorformat
 esc
 filetype
 foldmethod
