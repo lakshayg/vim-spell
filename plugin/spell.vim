@@ -9,7 +9,7 @@ augroup VimSpell
 
   " Load spell check files if buffer is modifiable
   autocmd BufReadPost *
-        \   if &modifiable
+        \   if &modifiable && &l:spell
         \ |   :call spell#LoadSyntaxFile()
         \ |   :call spell#LoadTagsFile()
         \ | else
