@@ -30,7 +30,7 @@ endfunction
 function! spell#BuildAllSyntaxFiles()
   let wordlists = split(globpath(s:words_dir, "*.words"))
   for inname in wordlists
-    let outname = s:spell_dir . (inname[len(s:spell_dir):-5])
+    let outname = s:spell_dir . (inname[len(s:spell_dir):-7])
     exe join(["mkspell! -ascii", outname, inname])
   endfor
 endfunction
