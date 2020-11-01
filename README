@@ -36,7 +36,7 @@ the syntax checking side-effect
 
 Using vim-plug:
 
-  Plug 'lakshayg/vim-spell', { 'do': { -> spell#BuildAllSyntaxFiles() } }
+  Plug 'lakshayg/vim-spell', { 'branch': 'main', 'do': { -> spell#BuildAllSyntaxFiles() } }
 
 The process should be similar for other plugin managers.
 

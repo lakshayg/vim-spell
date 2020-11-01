@@ -1,3 +1,8 @@
+if exists('g:loaded_lakshayg_spell')
+  finish
+endif
+let g:loaded_lakshayg_spell = 1
+
 command! -nargs=? SpellSyntaxAdd :call spell#SpellSyntaxAdd(<f-args>)
 command! -nargs=? SpellBuildSyntax :call spell#BuildSyntaxFile(<f-args>)
 command! -nargs=0 SpellBuildSyntaxAll :call spell#BuildAllSyntaxFiles()

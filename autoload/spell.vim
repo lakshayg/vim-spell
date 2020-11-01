@@ -17,7 +17,7 @@ function! spell#OnWordListWrite()
   let bufname = expand("%:p")
   let wordlists = split(globpath(s:words_dir, "*.words"))
   if index(wordlists, bufname) >= 0
-    silent exe "%!sort -u"
+    silent exe "mkview | %sort u | write | loadview"
     silent call spell#BuildSyntaxFile(fnamemodify(bufname, ":t:r"))
   endif
 endfunction
