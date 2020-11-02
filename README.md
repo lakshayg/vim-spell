@@ -32,15 +32,17 @@ probably solve a large subset of the problem this plugin
 solves. However, I prefer this approach primarily due to
 the syntax checking side-effect
 
-# Installation
+## Installation
 
 Using vim-plug:
 
-  Plug 'lakshayg/vim-spell', { 'branch': 'main', 'do': { -> spell#BuildAllSyntaxFiles() } }
+```
+Plug 'lakshayg/vim-spell', { 'branch': 'main', 'do': { -> spell#BuildAllSyntaxFiles() } }
+```
 
 The process should be similar for other plugin managers.
 
-# Usage
+## Usage
 
 Since this is a spell check plugin, make sure you "set spell"
 otherwise the plugin doesn't really do anything.
@@ -51,17 +53,23 @@ from tags or add a new word to the syntax spell file.
 
 To generate a spell file from the currently loaded tags files:
 
-  :SpellBuildTags
+```
+:SpellBuildTags
+```
 
 To add a new word to the syntax specific spell file:
 
-  :SpellSyntaxAdd [word]
+```
+:SpellSyntaxAdd [word]
+```
 
 If [word] is omitted, the word under the cursor is added.
 
 If more advanced editing of word lists is required, use:
 
-  :SpellEdit [filetype]
+```
+:SpellEdit [filetype]
+```
 
 When a word list is saved, it is automatically sorted, deduped and the
 corresponding spell file is updated. If [filetype] is left unspecified,
@@ -69,7 +77,9 @@ filetype of the current buffer is used
 
 To re-build all the spell files
 
-  :SpellBuildSyntaxAll
+```
+:SpellBuildSyntaxAll
+```
 
 You might notice that identifiers are still highlighted as mis-spellings
 even after generating the spell files. This is because the command only
